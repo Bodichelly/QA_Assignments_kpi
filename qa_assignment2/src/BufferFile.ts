@@ -3,9 +3,8 @@ import {Directory} from "./Directory";
 
 export class BufferFile extends FSBasicNode{
     private data: string[] = [];
-    private MAX_BUF_FILE_SIZE = 10;
 
-    constructor(name: string, parent: Directory | null, initialData: string[] = [], maxBufferFileSize: number) {
+    constructor(name: string, parent: Directory | null, initialData: string[] = []) {
         super(name, parent);
     }
 
@@ -18,7 +17,7 @@ export class BufferFile extends FSBasicNode{
     show(): any {
     }
 
-    push(dataElement: string): void {
+    push(dataElement: any): void {
 
     }
 

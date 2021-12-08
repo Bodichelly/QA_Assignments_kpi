@@ -4,7 +4,7 @@ import {Directory} from "./Directory";
 export class BinaryFile extends FSBasicNode{
     private data: string = "";
 
-    constructor(name: string, parent: Directory | null, data: string) {
+    constructor(name: string, parent: Directory | null, data: string = "") {
         super(name, parent);
     }
 

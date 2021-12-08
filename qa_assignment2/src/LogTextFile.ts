@@ -4,7 +4,7 @@ import {Directory} from "./Directory";
 export class LogTextFile  extends FSBasicNode{
     private data: string = "";
 
-    constructor(name: string, parent: Directory | null, data: string) {
+    constructor(name: string, parent: Directory | null, data: string = "") {
         super(name, parent);
     }
 
