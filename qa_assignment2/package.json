@@ -9,5 +9,9 @@
   },
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "ts-jest": "^27.1.1",
+    "ts-node": "^10.4.0"
   }
 }
