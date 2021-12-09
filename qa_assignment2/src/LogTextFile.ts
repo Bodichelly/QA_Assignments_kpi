@@ -14,7 +14,8 @@ export class LogTextFile  extends FSBasicNode{
     }
 
     push(dataElement: string): void {
-        if(dataElement)
-            this.data.concat(dataElement).concat('\n');
+        if(dataElement){
+            this.data += `${dataElement}\n`;
+        }
     }
 }

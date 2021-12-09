@@ -2,27 +2,37 @@ import { Directory } from "./Directory";
 
 export abstract class FSBasicNode {
     public readonly name: string;
+    public readonly isDir: boolean = false;
     private _parent: Directory | null = null;
 
-    constructor(name: string = `node_${Date.now()}`, parent: Directory | null) {
+    constructor(
+        name: string = `node_${Date.now()}`,
+        parent: Directory | null,
+        isDir: boolean = false
+    ) {
         if (parent && parent.files.find(f => f.name === name)) {
             throw new Error('Duplication file issue');
         }
+        this.isDir = isDir;
+        this.name = name;
         if (parent) {
             parent.files.push(this);
+            this._parent = parent;
         }
     }
 
-    get parent(): Directory {
+    get parent(): Directory | null {
         return this._parent;
     }
 
-    moveTo(newParent: Directory): void {
-        if (!this.parent && this['files']) {
-            throw new Error('Can not move a root folder');
-        }
+    setParent(newParent: Directory): void {
+        this._parent = newParent;
+    }
 
-        this.remove();
+    moveTo(newParent: Directory): void {
+        if (this.parent) {
+            this.remove();
+        }
         newParent.addFile(this);
     }
 
@@ -33,9 +43,9 @@ export abstract class FSBasicNode {
             throw new Error('Can not delete a root element');
         }
 
-        const index = this.parent.files.indexOf(this);
+        const index = this._parent.files.indexOf(this);
         if (index !== -1) {
-            this.parent.files.splice(index, 1);
+            this._parent.files.splice(index, 1);
         }
     }
 }

@@ -33,19 +33,20 @@ describe('Buffer file', () => {
     });
 
     test('reading data from the empty buffer', () => {
-        expect(() => bf.show).toThrowError();
+        const dataLength = bf.show().length
+        expect(dataLength).toBe(0);
     });
 
     test('buffer should work like a queue', function() {
         bf.push({ test: 'test' });
         bf.push(['a', 'b', 'c']);
 
-        expect(bf.show().test).toBe('test');
-        expect(bf.show().includes('d')).toBe(false);
+        expect(bf.pop().test).toBe('test');
+        expect(bf.pop().includes('d')).toBe(false);
 
         bf.push(15);
 
-        expect(bf.show()).toBeLessThan(20);
+        expect(bf.pop()).toBeLessThan(20);
     });
 
     test('overflowing the buffer', () => {

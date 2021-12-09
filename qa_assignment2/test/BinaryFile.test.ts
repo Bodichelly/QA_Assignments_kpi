@@ -5,7 +5,7 @@ describe('Binary file', () => {
     const rootDir = new Directory( 'root', null);
 
     test('should be successfully created', () => {
-        expect(() => new BinaryFile('file1', rootDir)).not.toThrowError();
+        expect(() => new BinaryFile('defaultFilename', rootDir)).not.toThrowError();
     });
 
     describe('default file', () => {

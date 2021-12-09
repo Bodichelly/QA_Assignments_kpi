@@ -32,7 +32,6 @@ export class BufferFile extends FSBasicNode{
         if (!this.data.length) {
             throw new Error('The buffer is empty');
         }
-
-        return JSON.parse(this.data.shift());
+        return JSON.parse(this.data.shift() || '');;
     }
 }

@@ -42,7 +42,9 @@ describe('Directory', () => {
     test('moving the root directory', () => {
         expect(() => {
             const newDir = new Directory('new_dir', null);
-            dir.moveTo(newDir);
+            const tmpDir = new Directory('tmp_dir', null);
+            newDir.addFile(tmpDir);
+            newDir.moveTo(dir);
         }).toThrowError();
     });
 
