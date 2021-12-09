@@ -6,17 +6,15 @@ export class LogTextFile  extends FSBasicNode{
 
     constructor(name: string, parent: Directory | null, data: string = "") {
         super(name, parent);
-    }
-
-    moveTo(newParent: Directory): void {
-    }
-
-    remove(): void {
+        this.data = data;
     }
 
     show(): any {
+        return this.data;
     }
 
     push(dataElement: string): void {
+        if(dataElement)
+            this.data.concat(dataElement).concat('\n');
     }
 }
