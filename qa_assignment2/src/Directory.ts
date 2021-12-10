@@ -1,5 +1,5 @@
 import {FSBasicNode} from "./FSBasicNode";
-
+import {printData} from "./utils";
 
 export class Directory extends FSBasicNode{
     public readonly files: FSBasicNode[] = [];
@@ -8,7 +8,12 @@ export class Directory extends FSBasicNode{
         super(name, parent, true);
     }
 
-    show(): any {
+    show(log:boolean = false, treeLevel:number = 0): any {
+        if(log){
+            console.log('|'+'-------'.repeat(treeLevel)+'| '+this.name+' /start');
+            this.files.forEach(el=> el.show(true, treeLevel+1));
+            console.log('|'+'-------'.repeat(treeLevel)+'| '+this.name+' /end');
+        }
         return [...this.files]
     }
 

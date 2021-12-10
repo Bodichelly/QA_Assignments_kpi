@@ -36,7 +36,7 @@ export abstract class FSBasicNode {
         newParent.addFile(this);
     }
 
-    abstract show(): any;
+    show(log:boolean = false, treeLevel:number = 0): any {}
 
     remove(): void {
         if (!this._parent) {

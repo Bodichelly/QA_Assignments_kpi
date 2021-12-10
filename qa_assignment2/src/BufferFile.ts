@@ -1,5 +1,6 @@
 import {FSBasicNode} from "./FSBasicNode";
 import {Directory} from "./Directory";
+import {printData} from "./utils";
 
 export class BufferFile extends FSBasicNode{
     private data: string[] = [];
@@ -11,7 +12,10 @@ export class BufferFile extends FSBasicNode{
         }
     }
 
-    show(): any {
+    show(log:boolean = false, treeLevel:number = 0): any {
+        if(log){
+            printData(this.name ,this.data, '\t'.repeat(treeLevel));
+        }
         return this.data;
     }
 

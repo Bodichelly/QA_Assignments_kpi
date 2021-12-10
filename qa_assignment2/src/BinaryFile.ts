@@ -1,5 +1,6 @@
 import {FSBasicNode} from "./FSBasicNode";
 import {Directory} from "./Directory";
+import {printData} from "./utils";
 
 export class BinaryFile extends FSBasicNode{
     private readonly data: string = "";
@@ -9,7 +10,10 @@ export class BinaryFile extends FSBasicNode{
         this.data = data;
     }
 
-    show(): any {
+    show(log:boolean = false, treeLevel:number = 0): any {
+        if(log){
+            printData(this.name ,this.data, '\t'.repeat(treeLevel));
+        }
         return this.data;
     }
 
