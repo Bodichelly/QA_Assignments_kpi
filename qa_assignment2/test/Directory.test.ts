@@ -1,4 +1,5 @@
 import { Directory } from './../src/Directory';
+import {BufferFile} from "../src/BufferFile";
 
 describe('Directory', () => {
     const OLD_ENV = process.env;
@@ -48,6 +49,20 @@ describe('Directory', () => {
         }).toThrowError();
     });
 
+    test('moving the nested directory', () => {
+        expect(() => {
+            const newDir = new Directory('new_dir', null);
+            const tmpDir1 = new Directory('tmp_dir1', newDir);
+            const tmpDir2 = new Directory('tmp_dir2', null);
+            tmpDir1.moveTo(tmpDir2);
+        }).not.toThrowError();
+    });
+    test('adding file with issue', () => {
+        expect(() => {
+            const newDir = new Directory('new_dir', null);
+            newDir.addFile(null);
+        }).toThrowError();
+    });
     test('overflowing the directory', () => {
         expect(() => {
             dir.addFile(new Directory('dir1', null));

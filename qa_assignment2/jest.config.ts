@@ -21,7 +21,7 @@ export default {
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: [
-    './test/**'
+    './src/**'
   ],
 
   // The directory where Jest should output its coverage files
@@ -46,10 +46,10 @@ export default {
   // An object that configures minimum threshold enforcement for coverage results
   coverageThreshold: {
     "global": {
-      "branches": 100,
-      "functions": 100,
-      "lines": 100,
-      "statements": 100
+      "branches": 80,
+      "functions": 80,
+      "lines": 80,
+      "statements": 80
     }
   },
 

@@ -24,6 +24,8 @@ describe('Buffer file', () => {
     const filename = 'filename';
     const bf = new BufferFile(filename, rootDir);
 
+    const bf2 = new BufferFile(filename, null);
+
     test('should have a proper filename', () => {
         expect(bf.name).toBe(filename);
     });
@@ -49,11 +51,24 @@ describe('Buffer file', () => {
         expect(bf.pop()).toBeLessThan(20);
     });
 
+    test('cannot pop empty buffer', () => {
+        expect(() => {
+            const bf3 = new BufferFile('dqwdwq', null);
+            bf3.pop();
+        }).toThrowError();
+    });
+
     test('overflowing the buffer', () => {
         expect(() => {
             bf.push(18);
             bf.push([{}, 'a']);
             bf.push({ 'a': 4 });
+        }).toThrowError();
+    });
+
+    test('cannot remove root element', () => {
+        expect(() => {
+            bf2.remove();
         }).toThrowError();
     });
 });
